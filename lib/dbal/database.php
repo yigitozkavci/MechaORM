@@ -1,4 +1,6 @@
 <?php
+namespace DBAL;
+
 class DB {
   public static function get() {
     try {

@@ -1,5 +1,6 @@
 <?php
-require_once 'database.php';
+namespace Mecha\DBAL;
+use Database;
 
 class Query {
 
@@ -43,15 +44,28 @@ class Query {
     return $this;
   }
 
+  public function reset() {
+    $this->sql = '';
+    $this->multiple_where = false;
+    $this->table = '';
+    $this->query_type = 'fetch';
+  }
+
   public function where($left, $right) {
-    $this->sql .= $this->multiple_where ? ' AND ' : ' WHERE '
-               .$left.' = \''.$right.'\'';
+    $this->sql .= ($this->multiple_where ? ' AND ' : ' WHERE ')
+      .$left
+      .' = \''
+      .$right
+      .'\'';
     $this->multiple_where = true;
     return $this;
   }
 
+  public function getSql() {
+    return $this->sql; 
+  }
+
   public function execute() {
-    /* echo 'Running sql: '.$this->sql; */
     $result = DB::get()->query($this->sql);
     $this->sql = '';
     return $this->query_type === 'fetch' ? $result->fetchAll(PDO::FETCH_ASSOC) : $result;

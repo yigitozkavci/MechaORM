@@ -1,7 +1,7 @@
 <?php
 namespace Mecha\ORM;
-require_once 'database.php';
-require_once 'query.php';
+use \Mecha\DBAL\Database;
+use \Mecha\DBAL\Query;
 
 class Model {
   /**
