@@ -2,13 +2,12 @@
 namespace DBAL;
 
 class DB {
-  public static function get() {
+  public static function getWithConfig($host, $dbname, $username, $password) {
     try {
-      return new PDO("mysql:host=localhost;dbname=php_blog", 'root', 'root');
-    } catch(PDOException $e) {
-      echo $e->getMessage();
+      return new \PDO("mysql:host=$host;dbname=$dbname", "$username", "$password");
+    } catch(\PDOException $e) {
+      echo "PDOError: ".$e->getMessage();
     }
   }
 }
 ?>
-

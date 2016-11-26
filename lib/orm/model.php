@@ -3,6 +3,9 @@ namespace Mecha\ORM;
 use \Mecha\DBAL\Database;
 use \Mecha\DBAL\Query;
 
+/**
+ * A generic object-relational-mapper
+ */
 class Model {
   /**
    * attrs Attributes of the model 
